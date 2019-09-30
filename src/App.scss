@@ -11,6 +11,7 @@ $highlight-color: rgb(66, 232, 224);
 }
 .Container {
   height: 90vh;
+  width: 100%;
   background-image: url(./images/tradingBackground.svg);
   background-repeat: no-repeat;
   background-size: cover;
@@ -63,15 +64,7 @@ $highlight-color: rgb(66, 232, 224);
   margin-top: 3rem;
   border-top: 2px solid #07041b;
   border-radius: 10%;
-  .OptionsButton {
-    grid-column: 1;
-    grid-row: 1;
-    background-color: $highlight-color;
-    border: none;
-  }
-  .OptionMenu {
-    padding: 1.5rem 1rem;
-  }
+
   .input-group {
     padding: 1.5rem 0;
     width: 33%;
@@ -104,6 +97,7 @@ $highlight-color: rgb(66, 232, 224);
 
 .introContainer {
   display: grid;
+  justify-items: center;
   grid-gap: 2%;
   width: 97%;
   max-width: calc(80% - 1rem);
