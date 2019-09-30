@@ -1,26 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import NavBar from "./components/navbar";
+import IntroGrid from "./components/intro-grid";
+import MainMenu from "./components/main-menu";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import "./App.scss";
+
+class App extends Component {
+  constructor() {
+    super();
+  }
+
+  render() {
+    return (
+      <div className="Home">
+        <NavBar style={{ backgroundColor: "#07041B" }} />
+        <div className="Container">
+          <IntroGrid />
+        </div>
+        <MainMenu />
+      </div>
+    );
+  }
 }
 
 export default App;
