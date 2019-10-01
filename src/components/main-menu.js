@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { InputGroup, InputGroupAddon, Input } from "reactstrap";
 import Exchange from "../images/exchange.svg";
+import DataDisplay from "./data-display";
 
 class MainMenu extends Component {
   constructor() {
@@ -31,6 +32,7 @@ class MainMenu extends Component {
               />
             </InputGroup>
           </div>
+          <DataDisplay />
         </div>
       </div>
     );

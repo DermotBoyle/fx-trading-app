@@ -6,10 +6,6 @@ import MainMenu from "./components/main-menu";
 import "./App.scss";
 
 class App extends Component {
-  constructor() {
-    super();
-  }
-
   render() {
     return (
       <div className="Home">
