@@ -12,10 +12,10 @@ class DataDisplay extends Component {
       isLoading: false,
       from: null,
       to: null,
-      open: null,
-      close: null,
-      high: null,
-      low: null,
+      open: [],
+      close: [],
+      high: [],
+      low: [],
       timeStamp: null,
       interval: null,
       isLoading: null
@@ -30,26 +30,38 @@ class DataDisplay extends Component {
       .split("T")[0];
 
     var day = new Date(Math.round(date.getTime() / coeff) * coeff)
-      .toLocaleTimeString("en-UK", { timeZone: "UK/London" })
-      .split(" ")[0];
-    console.log(day);
-
-    const searchValue = `${year} ${day}`;
+      .toUTCString()
+      .split(" ")[4];
+    const timeStamp = `${year} ${day}`;
     const firstValue = "Time Series FX (5min)";
+    const metaData = "Meta Data";
+    const metaKey = "4. Last Refreshed";
 
     const API_KEY = process.env.API_KEY;
     let tradeData = await API.get(
       `query?function=FX_INTRADAY&from_symbol=EUR&to_symbol=USD&interval=5min&apikey=${API_KEY}`
     );
     this.setState({
-      data: [
+      timeStamp: [...this.state.data, tradeData.data[metaData][metaKey]],
+      open: [
         ...this.state.data,
-        tradeData.data[firstValue]
-        /*"2019-10-01 15:40:00"*/
+        tradeData.data[firstValue][timeStamp]["1. open"]
+      ],
+      close: [
+        ...this.state.data,
+        tradeData.data[firstValue][timeStamp]["4. close"]
+      ],
+      low: [
+        ...this.state.data,
+        tradeData.data[firstValue][timeStamp]["3. low"]
+      ],
+      high: [
+        ...this.state.data,
+        tradeData.data[firstValue][timeStamp]["2. high"]
       ]
     });
-    let mydata = this.state.data;
-    console.log(mydata);
+    /*let mydata = this.state.data;
+    console.log(mydata);*/
   }
 
   render() {

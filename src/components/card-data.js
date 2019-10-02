@@ -63,11 +63,11 @@ class Trade extends Component {
 Trade.propTypes = {
   from: PropTypes.string,
   to: PropTypes.string,
-  open: PropTypes.string,
-  close: PropTypes.string,
-  high: PropTypes.string,
-  low: PropTypes.string,
-  timeStamp: PropTypes.string,
+  open: PropTypes.array,
+  close: PropTypes.array,
+  high: PropTypes.array,
+  low: PropTypes.array,
+  timeStamp: PropTypes.array,
   interval: PropTypes.string,
   isLoading: PropTypes.bool
 };
