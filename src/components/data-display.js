@@ -29,13 +29,15 @@ class DataDisplay extends Component {
       .toISOString()
       .split("T")[0];
 
-    var day = new Date(Math.round(date.getTime() / coeff) * coeff)
+    var day = new Date(Math.floor(date.getTime() / coeff) * coeff)
       .toUTCString()
       .split(" ")[4];
     const timeStamp = `${year} ${day}`;
     const firstValue = "Time Series FX (5min)";
     const metaData = "Meta Data";
     const metaKey = "4. Last Refreshed";
+    const from = "2. From Symbol";
+    const to = "3. To Symbol";
 
     const API_KEY = process.env.API_KEY;
     let tradeData = await API.get(
@@ -58,7 +60,9 @@ class DataDisplay extends Component {
       high: [
         ...this.state.data,
         tradeData.data[firstValue][timeStamp]["2. high"]
-      ]
+      ],
+      from: [...this.state.data, tradeData.data[metaData][from]],
+      to: [...this.state.data, tradeData.data[metaData][to]]
     });
     /*let mydata = this.state.data;
     console.log(mydata);*/
@@ -76,10 +80,6 @@ class DataDisplay extends Component {
       interval,
       isLoading
     } = this.state;
-
-    const TradeData = this.state.data;
-
-    var NewData = TradeData;
 
     return (
       <div className="dataContainer">

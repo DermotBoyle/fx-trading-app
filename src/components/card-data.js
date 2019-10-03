@@ -7,6 +7,16 @@ import {
   CardBody,
   CardFooter
 } from "shards-react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faExchangeAlt,
+  faDoorOpen,
+  faDoorClosed,
+  faAngleDoubleUp,
+  faAngleDoubleDown,
+  faClock
+} from "@fortawesome/free-solid-svg-icons";
+import Candles from "../images/candlestick.svg";
 import PropTypes from "prop-types";
 
 class Trade extends Component {
@@ -30,21 +40,45 @@ class Trade extends Component {
     const loadingMessage = <span className="d-flex m-auto">Loading...</span>;
 
     const TradeDetails = (
-      <div>
-        <CardHeader>
-          {from}
+      <div className="cardContainer">
+        <CardHeader className="cardHeader">
+          {from} &nbsp;
+          <FontAwesomeIcon icon={faExchangeAlt} />
+          &nbsp;
           {to}
         </CardHeader>
-        <CardImg src="https://place-hold.it/300x200" />
+        <div className="candleContainer">
+          <CardImg src={Candles} />
+        </div>
         <CardBody>
           <CardTitle>{interval}</CardTitle>
-          <ol>
-            <li>{open}</li>
-            <li>{close}</li>
-            <li>{high}</li>
-            <li>{low}</li>
-            <li>{timeStamp}</li>
-          </ol>
+          <ul style={{ listStyle: "none" }}>
+            <li>
+              <FontAwesomeIcon icon={faDoorOpen} />
+              &nbsp;
+              {open}
+            </li>
+            <li>
+              <FontAwesomeIcon icon={faDoorClosed} />
+              &nbsp;
+              {close}
+            </li>
+            <li>
+              <FontAwesomeIcon icon={faAngleDoubleUp} />
+              &nbsp;
+              {high}
+            </li>
+            <li>
+              <FontAwesomeIcon icon={faAngleDoubleDown} />
+              &nbsp;
+              {low}
+            </li>
+            <li>
+              <FontAwesomeIcon icon={faClock} />
+              &nbsp;
+              {timeStamp}
+            </li>
+          </ul>
         </CardBody>
         <CardFooter></CardFooter>
       </div>

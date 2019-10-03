@@ -163,3 +163,29 @@ $highlight-color: rgb(66, 232, 224);
   color: aliceblue;
   font-family: Prata-Regular;
 }
+
+li {
+  font-family: Prata-Regular;
+  line-height: 2.5;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+.cardHeader {
+  text-align: center;
+  font-family: Prata-Regular;
+}
+
+.cardContainer {
+  width: 15rem;
+}
+.card-body {
+  padding: 0 2rem 1rem;
+}
+
+.candleContainer {
+  padding: 1rem 2rem;
+}

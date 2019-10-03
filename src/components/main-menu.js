@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { InputGroup, InputGroupAddon, Input } from "reactstrap";
 import Exchange from "../images/exchange.svg";
 import DataDisplay from "./data-display";
+import Select from "./select-automated";
 
 class MainMenu extends Component {
   constructor() {
@@ -31,6 +32,7 @@ class MainMenu extends Component {
                 placeholder="Search FX/Crypto/Stock"
               />
             </InputGroup>
+            <Select />
           </div>
           <DataDisplay />
         </div>
