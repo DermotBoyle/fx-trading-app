@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import Trade from "./card-data";
 import API from "./utils/api";
 require("dotenv").config();
-const axios = require("axios");
 
 class DataDisplay extends Component {
   constructor() {

@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import { InputGroup, InputGroupAddon, Input } from "reactstrap";
 import Exchange from "../images/exchange.svg";
 import DataDisplay from "./data-display";
 import Select from "./select-automated";
+import ForexData from "./forex.json";
 
 class MainMenu extends Component {
   constructor() {
@@ -20,19 +20,14 @@ class MainMenu extends Component {
     }));
   }
   render() {
+    console.log(this.props.List);
     return (
       <div className="MainMain">
         <div className="MainContainer">
           <div className="optionsInputContainer">
             <img className="exchange" src={Exchange}></img>
-            <InputGroup>
-              <InputGroupAddon addonType="prepend"></InputGroupAddon>
-              <Input
-                className="OptionsInputField"
-                placeholder="Search FX/Crypto/Stock"
-              />
-            </InputGroup>
-            <Select />
+
+            <Select className="inputContainer" options={ForexData} />
           </div>
           <DataDisplay />
         </div>

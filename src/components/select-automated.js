@@ -3,11 +3,22 @@ import Select from "react-select";
 
 class Auto extends Component {
   render() {
-    const List = this.props;
-    console.log(List);
+    console.log(this.props.options.List);
+
     return (
       <div>
-        <Select options={List} />
+        <Select
+          className="inputContainer"
+          id="from"
+          value={this.props.options.List}
+          options={this.props.options.List}
+        />
+        <Select
+          className="InputContainer"
+          id="to"
+          value={this.props.options.List}
+          options={this.props.options.List}
+        />
       </div>
     );
   }
