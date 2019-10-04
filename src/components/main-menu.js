@@ -10,7 +10,9 @@ class MainMenu extends Component {
 
     this.toggle = this.toggle.bind(this);
     this.state = {
-      dropdownOpen: false
+      dropdownOpen: false,
+      selectedFrom: null,
+      selectedTo: null
     };
   }
 
@@ -19,15 +21,31 @@ class MainMenu extends Component {
       dropdownOpen: !prevState.dropdownOpen
     }));
   }
+
+  handleChangeFrom() {
+    this.setState(
+      {
+        selectedFrom: this.state.selectedFrom
+      },
+      () => console.log(this.state.selectedFrom)
+    );
+  }
+
   render() {
-    console.log(this.props.List);
     return (
       <div className="MainMain">
         <div className="MainContainer">
           <div className="optionsInputContainer">
             <img className="exchange" src={Exchange}></img>
 
-            <Select className="inputContainer" options={ForexData} />
+            <Select
+              className="inputContainer"
+              value={this.state.selectedFrom}
+              value={this.state.selectedTo}
+              onChange={this.handleChangeTo}
+              OnChange={this.handleChangeFrom}
+              options={ForexData}
+            />
           </div>
           <DataDisplay />
         </div>
