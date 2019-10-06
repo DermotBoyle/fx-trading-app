@@ -17,7 +17,9 @@ class DataDisplay extends Component {
       low: [],
       timeStamp: null,
       interval: null,
-      isLoading: null
+      isLoading: null,
+      urlFrom: "",
+      urlTo: ""
     };
   }
 
@@ -37,11 +39,15 @@ class DataDisplay extends Component {
     const metaKey = "4. Last Refreshed";
     const from = "2. From Symbol";
     const to = "3. To Symbol";
+    const urlFrom = this.state.urlFrom;
+    const urlTo = this.state.urlTo;
 
     const API_KEY = process.env.API_KEY;
+
     let tradeData = await API.get(
       `query?function=FX_INTRADAY&from_symbol=EUR&to_symbol=USD&interval=5min&apikey=${API_KEY}`
     );
+    console.log(this.state.data);
     this.setState({
       timeStamp: [...this.state.data, tradeData.data[metaData][metaKey]],
       open: [
@@ -63,8 +69,8 @@ class DataDisplay extends Component {
       from: [...this.state.data, tradeData.data[metaData][from]],
       to: [...this.state.data, tradeData.data[metaData][to]]
     });
-    /*let mydata = this.state.data;
-    console.log(mydata);*/
+    let mydata = this.state.data;
+    console.log(mydata);
   }
 
   render() {

@@ -87,6 +87,12 @@ $highlight-color: rgb(66, 232, 224);
       -moz-box-shadow: 29px 20px 45px -23px rgba(0, 0, 0, 0.75);
       box-shadow: 29px 20px 45px -23px rgba(0, 0, 0, 0.75);
     }
+    .submitButton {
+      margin-left: 1.5rem;
+      align-self: center;
+      margin-top: 0.75rem;
+      height: 70%;
+    }
   }
 }
 
