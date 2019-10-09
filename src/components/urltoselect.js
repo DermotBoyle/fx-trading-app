@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import Select from "react-select";
 
-class UrlFrom extends Component {
+class UrlTo extends Component {
   handleChange = e => {
     console.log(e);
     this.setState = {
-      urlFrom: e
+      urlTo: e
     };
   };
 
@@ -22,4 +22,4 @@ class UrlFrom extends Component {
     );
   }
 }
-export default UrlFrom;
+export default UrlTo;

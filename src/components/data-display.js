@@ -47,7 +47,6 @@ class DataDisplay extends Component {
     let tradeData = await API.get(
       `query?function=FX_INTRADAY&from_symbol=EUR&to_symbol=USD&interval=5min&apikey=${API_KEY}`
     );
-    console.log(this.state.data);
     this.setState({
       timeStamp: [...this.state.data, tradeData.data[metaData][metaKey]],
       open: [
@@ -69,8 +68,6 @@ class DataDisplay extends Component {
       from: [...this.state.data, tradeData.data[metaData][from]],
       to: [...this.state.data, tradeData.data[metaData][to]]
     });
-    let mydata = this.state.data;
-    console.log(mydata);
   }
 
   render() {

@@ -95,8 +95,8 @@ class Trade extends Component {
 }
 
 Trade.propTypes = {
-  from: PropTypes.string,
-  to: PropTypes.string,
+  from: PropTypes.array,
+  to: PropTypes.array,
   open: PropTypes.array,
   close: PropTypes.array,
   high: PropTypes.array,
