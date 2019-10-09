@@ -30,16 +30,17 @@ class MainMenu extends Component {
   handleChangeFrom = txt => {
     console.log(txt);
 
-    this.setState({ urlFrom: txt });
-    console.log(this.state.urlFrom);
+    this.setState({ urlFrom: txt }, () => console.log("state", this.state));
   };
 
   handleChangeTo = txt => {
     console.log(txt);
-    this.setState({
-      urlTo: txt
-    });
-    console.log(this.state.urlTo);
+    this.setState(
+      {
+        urlTo: txt
+      },
+      () => console.log("state", this.state)
+    );
   };
 
   handleSubmit() {
