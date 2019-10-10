@@ -6,6 +6,7 @@ import UrlFrom from "./select-automated";
 import UrlTo from "./urltoselect";
 import ForexData from "./forex.json";
 import API from "./utils/api";
+require("dotenv").config();
 
 class MainMenu extends Component {
   constructor() {
@@ -17,7 +18,13 @@ class MainMenu extends Component {
       selectedFrom: null,
       selectedTo: null,
       urlFrom: "",
-      urlTo: ""
+      urlTo: "",
+      open: [],
+      close: [],
+      high: [],
+      low: [],
+      timeStamp: null,
+      data: []
     };
   }
 
@@ -32,7 +39,7 @@ class MainMenu extends Component {
 
     this.setState({ urlFrom: txt }, () => console.log("state", this.state));
   };
-
+  "";
   handleChangeTo = txt => {
     console.log(txt);
     this.setState(
@@ -43,21 +50,55 @@ class MainMenu extends Component {
     );
   };
 
-  handleSubmit() {
-    console.log("here");
-    const urlFrom = this.state.urlFrom;
-    const urlTo = this.state.urlTo;
+  handleSubmit = () => {
+    const from = this.state.urlFrom.label;
+    const to = this.state.urlTo.label;
     const API_KEY = process.env.API_KEY;
-    require("dotenv").config();
+    var coeff = 1000 * 60 * 5;
+    var date = new Date();
+    var year = new Date(Math.round(date.getTime() / coeff) * coeff)
+      .toISOString()
+      .split("T")[0];
+
+    var day = new Date(Math.floor(date.getTime() / coeff) * coeff)
+      .toUTCString()
+      .split(" ")[4];
+    const timeStamp = `${year} ${day}`;
+    const firstValue = "Time Series FX (5min)";
+    const metaData = "Meta Data";
+    const metaKey = "4. Last Refreshed";
+    const extfrom = "2. From Symbol";
+    const extto = "3. To Symbol";
+
     API.get(
-      `query?function=FX_INTRADAY&from_symbol=${urlFrom}&to_symbol=${urlTo}&interval=5min&apikey=${API_KEY}`
-    );
-    this.setState({
-      selectedFrom: this.state.selectedFrom,
-      selectedTo: this.state.selectedTo
+      `query?function=FX_INTRADAY&from_symbol=${from}&to_symbol=${to}&interval=5min&apikey=${API_KEY}`
+    ).then(res => {
+      console.log(res);
     });
-    console.log(this.state.selectedFrom);
-  }
+
+    // "Some User to
+    /*this.setState({
+      timeStamp: [...this.state.data, tradeData.data[metaData][metaKey]],
+      open: [
+        ...this.state.data,
+        tradeData.data[firstValue][timeStamp]["1. open"]
+      ],
+      close: [
+        ...this.state.data,
+        tradeData.data[firstValue][timeStamp]["4. close"]
+      ],
+      low: [
+        ...this.state.data,
+        tradeData.data[firstValue][timeStamp]["3. low"]
+      ],
+      high: [
+        ...this.state.data,
+        tradeData.data[firstValue][timeStamp]["2. high"]
+      ],
+      from: [...this.state.data, tradeData.data[metaData][extfrom]],
+      to: [...this.state.data, tradeData.data[metaData][extto]]
+    });*/
+  };
 
   render() {
     return (
@@ -89,7 +130,15 @@ class MainMenu extends Component {
             </Button>
           </div>
 
-          <DataDisplay />
+          <DataDisplay
+            urlfrom={this.state.urlFrom}
+            urlTo={this.state.urlTo}
+            open={this.state.open}
+            close={this.state.close}
+            high={this.state.high}
+            low={this.state.low}
+            timeStamp={this.state.timeStamp}
+          />
         </div>
       </div>
     );
