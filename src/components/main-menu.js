@@ -73,31 +73,19 @@ class MainMenu extends Component {
     API.get(
       `query?function=FX_INTRADAY&from_symbol=${from}&to_symbol=${to}&interval=5min&apikey=${API_KEY}`
     ).then(res => {
-      console.log(res);
+      this.setState({
+        timeStamp: [...this.state.data, res.data[metaData][metaKey]],
+        open: [...this.state.data, res.data[firstValue][timeStamp]["1. open"]],
+        close: [
+          ...this.state.data,
+          res.data[firstValue][timeStamp]["4. close"]
+        ],
+        low: [...this.state.data, res.data[firstValue][timeStamp]["3. low"]],
+        high: [...this.state.data, res.data[firstValue][timeStamp]["2. high"]],
+        from: [...this.state.data, res.data[metaData][extfrom]],
+        to: [...this.state.data, res.data[metaData][extto]]
+      });
     });
-
-    // "Some User to
-    /*this.setState({
-      timeStamp: [...this.state.data, tradeData.data[metaData][metaKey]],
-      open: [
-        ...this.state.data,
-        tradeData.data[firstValue][timeStamp]["1. open"]
-      ],
-      close: [
-        ...this.state.data,
-        tradeData.data[firstValue][timeStamp]["4. close"]
-      ],
-      low: [
-        ...this.state.data,
-        tradeData.data[firstValue][timeStamp]["3. low"]
-      ],
-      high: [
-        ...this.state.data,
-        tradeData.data[firstValue][timeStamp]["2. high"]
-      ],
-      from: [...this.state.data, tradeData.data[metaData][extfrom]],
-      to: [...this.state.data, tradeData.data[metaData][extto]]
-    });*/
   };
 
   render() {
