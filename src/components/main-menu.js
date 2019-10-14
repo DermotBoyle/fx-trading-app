@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Button } from "shards-react";
 import Exchange from "../images/exchange.svg";
 import DataDisplay from "./data-display";
+import PropsDisplay from "./props-display";
 import UrlFrom from "./select-automated";
 import UrlTo from "./urltoselect";
 import ForexData from "./forex.json";
@@ -74,6 +75,7 @@ class MainMenu extends Component {
       `query?function=FX_INTRADAY&from_symbol=${from}&to_symbol=${to}&interval=5min&apikey=${API_KEY}`
     ).then(res => {
       this.setState({
+        data: [...this.state.data],
         timeStamp: [...this.state.data, res.data[metaData][metaKey]],
         open: [...this.state.data, res.data[firstValue][timeStamp]["1. open"]],
         close: [
@@ -86,6 +88,7 @@ class MainMenu extends Component {
         to: [...this.state.data, res.data[metaData][extto]]
       });
     });
+    console.log(this.state.timeStamp);
   };
 
   render() {
@@ -117,16 +120,27 @@ class MainMenu extends Component {
               Get Quote!
             </Button>
           </div>
-
-          <DataDisplay
-            urlfrom={this.state.urlFrom}
-            urlTo={this.state.urlTo}
-            open={this.state.open}
-            close={this.state.close}
-            high={this.state.high}
-            low={this.state.low}
-            timeStamp={this.state.timeStamp}
-          />
+          {this.state.data ? (
+            <PropsDisplay
+              urlfrom={this.state.urlFrom}
+              urlTo={this.state.urlTo}
+              open={this.state.open}
+              close={this.state.close}
+              high={this.state.high}
+              low={this.state.low}
+              timeStamp={this.state.timeStamp}
+            />
+          ) : (
+            <DataDisplay
+              urlfrom={this.state.urlFrom}
+              urlTo={this.state.urlTo}
+              open={this.state.open}
+              close={this.state.close}
+              high={this.state.high}
+              low={this.state.low}
+              timeStamp={this.state.timeStamp}
+            />
+          )}
         </div>
       </div>
     );

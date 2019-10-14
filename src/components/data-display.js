@@ -48,6 +48,7 @@ class DataDisplay extends Component {
       `query?function=FX_INTRADAY&from_symbol=EUR&to_symbol=USD&interval=5min&apikey=${API_KEY}`
     );
     this.setState({
+      data: [...this.state.data],
       timeStamp: [...this.state.data, tradeData.data[metaData][metaKey]],
       open: [
         ...this.state.data,
@@ -80,11 +81,13 @@ class DataDisplay extends Component {
       low,
       timeStamp,
       interval,
-      isLoading
+      isLoading,
+      data
     } = this.state;
 
     return (
       <div className="dataContainer">
+        (th)
         <Trade
           from={from}
           to={to}
