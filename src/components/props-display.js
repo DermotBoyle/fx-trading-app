@@ -21,7 +21,7 @@ class PropsDisplay extends Component {
     } = this.props;
 
     return (
-      <div className="dataContainer">
+      <div className="dataPropsContainer">
         <TradeUpdate
           from={from}
           to={to}

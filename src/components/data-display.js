@@ -86,8 +86,7 @@ class DataDisplay extends Component {
     } = this.state;
 
     return (
-      <div className="dataContainer">
-        (th)
+      <div className="dataContainer" id="dataStateContainer">
         <Trade
           from={from}
           to={to}

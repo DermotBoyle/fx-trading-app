@@ -101,6 +101,11 @@ $highlight-color: rgb(66, 232, 224);
   grid-column: 1;
 }
 
+.dataStateContainer {
+  grid-row: 2;
+  grid-column: 1;
+}
+
 .exchange {
   width: 30%;
   height: 100%;

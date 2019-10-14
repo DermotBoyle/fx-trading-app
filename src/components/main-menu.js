@@ -75,7 +75,7 @@ class MainMenu extends Component {
       `query?function=FX_INTRADAY&from_symbol=${from}&to_symbol=${to}&interval=5min&apikey=${API_KEY}`
     ).then(res => {
       this.setState({
-        data: [...this.state.data],
+        data: [res.data],
         timeStamp: [...this.state.data, res.data[metaData][metaKey]],
         open: [...this.state.data, res.data[firstValue][timeStamp]["1. open"]],
         close: [
@@ -92,6 +92,7 @@ class MainMenu extends Component {
   };
 
   render() {
+    console.log(this.state.data);
     return (
       <div className="MainMain">
         <div className="MainContainer">
@@ -120,7 +121,7 @@ class MainMenu extends Component {
               Get Quote!
             </Button>
           </div>
-          {this.state.data ? (
+          {this.state.timeStamp !== null ? (
             <PropsDisplay
               urlfrom={this.state.urlFrom}
               urlTo={this.state.urlTo}
@@ -131,15 +132,7 @@ class MainMenu extends Component {
               timeStamp={this.state.timeStamp}
             />
           ) : (
-            <DataDisplay
-              urlfrom={this.state.urlFrom}
-              urlTo={this.state.urlTo}
-              open={this.state.open}
-              close={this.state.close}
-              high={this.state.high}
-              low={this.state.low}
-              timeStamp={this.state.timeStamp}
-            />
+            <DataDisplay />
           )}
         </div>
       </div>
