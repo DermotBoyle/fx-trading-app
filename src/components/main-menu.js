@@ -16,16 +16,13 @@ class MainMenu extends Component {
     this.toggle = this.toggle.bind(this);
     this.state = {
       dropdownOpen: false,
-      selectedFrom: null,
-      selectedTo: null,
       urlFrom: [],
       urlTo: [],
       open: [],
       close: [],
       high: [],
       low: [],
-      timeStamp: null,
-      data: []
+      timeStamp: null
     };
   }
 
@@ -71,19 +68,12 @@ class MainMenu extends Component {
     API.get(
       `query?function=FX_INTRADAY&from_symbol=${from}&to_symbol=${to}&interval=5min&apikey=${API_KEY}`
     ).then(res => {
-      console.log(this.state.urlFrom);
-      console.log(this.state.urlTo);
-
       this.setState({
-        data: [res.data],
-        timeStamp: [...this.state.data, res.data[metaData][metaKey]],
-        open: [...this.state.data, res.data[firstValue][timeStamp]["1. open"]],
-        close: [
-          ...this.state.data,
-          res.data[firstValue][timeStamp]["4. close"]
-        ],
-        low: [...this.state.data, res.data[firstValue][timeStamp]["3. low"]],
-        high: [...this.state.data, res.data[firstValue][timeStamp]["2. high"]]
+        timeStamp: res.data[metaData][metaKey],
+        open: res.data[firstValue][timeStamp]["1. open"],
+        close: res.data[firstValue][timeStamp]["4. close"],
+        low: res.data[firstValue][timeStamp]["3. low"],
+        high: res.data[firstValue][timeStamp]["2. high"]
       });
     });
   };

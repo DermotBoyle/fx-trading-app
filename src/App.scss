@@ -193,6 +193,14 @@ ul {
 .cardContainer {
   width: 15rem;
 }
+.dataPropsContainer {
+  display: grid;
+  grid-row: 2;
+  grid-column: 1;
+}
+.cardContainer {
+  display: grid;
+}
 .card-body {
   padding: 0 2rem 1rem;
 }
