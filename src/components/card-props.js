@@ -18,6 +18,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import Candles from "../images/candlestick.svg";
 import PropTypes from "prop-types";
+import UrlTo from "./urltoselect";
 
 class TradeUpdate extends Component {
   constructor() {
@@ -26,8 +27,9 @@ class TradeUpdate extends Component {
 
   render() {
     const {
-      from,
-      to,
+      data,
+      urlFrom,
+      urlTo,
       interval,
       timeStamp,
       open,
@@ -38,14 +40,16 @@ class TradeUpdate extends Component {
     } = this.props;
 
     const loadingMessage = <span className="d-flex m-auto">Loading...</span>;
+    console.log(urlFrom);
+    console.log(urlTo);
 
     const TradeDetails = (
       <div className="cardContainer">
         <CardHeader className="cardHeader">
-          {from} &nbsp;
+          {urlFrom} &nbsp;
           <FontAwesomeIcon icon={faExchangeAlt} />
           &nbsp;
-          {to}
+          {urlTo}
         </CardHeader>
         <div className="candleContainer">
           <CardImg src={Candles} />
@@ -95,8 +99,8 @@ class TradeUpdate extends Component {
 }
 
 TradeUpdate.propTypes = {
-  from: PropTypes.array,
-  to: PropTypes.array,
+  urlFrom: PropTypes.string,
+  urlTo: PropTypes.string,
   open: PropTypes.array,
   close: PropTypes.array,
   high: PropTypes.array,

@@ -8,23 +8,22 @@ class PropsDisplay extends Component {
 
   render() {
     const {
-      from,
-      to,
+      urlFrom,
+      urlTo,
       open,
       close,
       high,
       low,
       timeStamp,
       interval,
-      isLoading,
-      data
+      isLoading
     } = this.props;
 
     return (
       <div className="dataPropsContainer">
         <TradeUpdate
-          from={from}
-          to={to}
+          urlFrom={urlFrom}
+          urlTo={urlTo}
           open={open}
           close={close}
           high={high}

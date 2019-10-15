@@ -18,8 +18,8 @@ class MainMenu extends Component {
       dropdownOpen: false,
       selectedFrom: null,
       selectedTo: null,
-      urlFrom: "",
-      urlTo: "",
+      urlFrom: [],
+      urlTo: [],
       open: [],
       close: [],
       high: [],
@@ -35,25 +35,24 @@ class MainMenu extends Component {
     }));
   }
 
-  handleChangeFrom = txt => {
-    console.log(txt);
-
-    this.setState({ urlFrom: txt }, () => console.log("state", this.state));
+  handleChangeFrom = s => {
+    let taco = s.label;
+    this.setState({ urlFrom: taco }, () => console.log("state", this.state));
   };
   "";
   handleChangeTo = txt => {
-    console.log(txt);
+    let burrito = txt.label;
     this.setState(
       {
-        urlTo: txt
+        urlTo: burrito
       },
       () => console.log("state", this.state)
     );
   };
 
   handleSubmit = () => {
-    const from = this.state.urlFrom.label;
-    const to = this.state.urlTo.label;
+    const from = this.state.urlFrom;
+    const to = this.state.urlTo;
     const API_KEY = process.env.API_KEY;
     var coeff = 1000 * 60 * 5;
     var date = new Date();
@@ -68,12 +67,13 @@ class MainMenu extends Component {
     const firstValue = "Time Series FX (5min)";
     const metaData = "Meta Data";
     const metaKey = "4. Last Refreshed";
-    const extfrom = "2. From Symbol";
-    const extto = "3. To Symbol";
 
     API.get(
       `query?function=FX_INTRADAY&from_symbol=${from}&to_symbol=${to}&interval=5min&apikey=${API_KEY}`
     ).then(res => {
+      console.log(this.state.urlFrom);
+      console.log(this.state.urlTo);
+
       this.setState({
         data: [res.data],
         timeStamp: [...this.state.data, res.data[metaData][metaKey]],
@@ -83,16 +83,12 @@ class MainMenu extends Component {
           res.data[firstValue][timeStamp]["4. close"]
         ],
         low: [...this.state.data, res.data[firstValue][timeStamp]["3. low"]],
-        high: [...this.state.data, res.data[firstValue][timeStamp]["2. high"]],
-        from: [...this.state.data, res.data[metaData][extfrom]],
-        to: [...this.state.data, res.data[metaData][extto]]
+        high: [...this.state.data, res.data[firstValue][timeStamp]["2. high"]]
       });
     });
-    console.log(this.state.timeStamp);
   };
 
   render() {
-    console.log(this.state.data);
     return (
       <div className="MainMain">
         <div className="MainContainer">
@@ -109,7 +105,7 @@ class MainMenu extends Component {
             <UrlTo
               className="inputContainer"
               urlTo={this.state.urlTo}
-              value={this.state.urlFrom}
+              value={this.state.urlTo}
               onChange={e => this.handleChangeTo(e)}
               options={ForexData}
             />
@@ -123,7 +119,7 @@ class MainMenu extends Component {
           </div>
           {this.state.timeStamp !== null ? (
             <PropsDisplay
-              urlfrom={this.state.urlFrom}
+              urlFrom={this.state.urlFrom}
               urlTo={this.state.urlTo}
               open={this.state.open}
               close={this.state.close}
