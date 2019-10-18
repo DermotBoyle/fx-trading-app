@@ -14,11 +14,12 @@ function Chart(props) {
         domainPadding={{ x: 25 }}
         scale={{ x: "time" }}
       >
-        <VictoryAxis tickFormat={t => `${t.getDate()}/${t.getMonth()}`} />
+        <VictoryAxis /*tickFormat={t => `${t.getDate()}/${t.getMonth()}`}*/ />
         <VictoryAxis dependentAxis />
         <VictoryCandlestick
           candleColors={{ positive: "#5f5c5b", negative: "#c43a31" }}
           data={[props]}
+          width="55"
         />
       </VictoryChart>
     </div>

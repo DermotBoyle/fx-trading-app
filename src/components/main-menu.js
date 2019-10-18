@@ -127,6 +127,7 @@ class MainMenu extends Component {
             close={this.state.close}
             high={this.state.high}
             low={this.state.low}
+            x={this.state.timeStamp}
           />
         </div>
       </div>
