@@ -11,10 +11,11 @@ class UrlFrom extends Component {
 
   render() {
     return (
-      <div>
+      <div className="fromToContainer">
         <Select
           className="inputContainer"
           id="urlFrom"
+          placeholder="From..."
           options={this.props.options.List}
           onChange={this.props.onChange}
         />

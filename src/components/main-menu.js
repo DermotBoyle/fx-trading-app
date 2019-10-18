@@ -7,6 +7,7 @@ import UrlFrom from "./select-automated";
 import UrlTo from "./urltoselect";
 import ForexData from "./forex.json";
 import API from "./utils/api";
+import Chart from "./chart-component";
 require("dotenv").config();
 
 class MainMenu extends Component {
@@ -22,7 +23,8 @@ class MainMenu extends Component {
       close: [],
       high: [],
       low: [],
-      timeStamp: null
+      timeStamp: null,
+      data: ""
     };
   }
 
@@ -120,6 +122,12 @@ class MainMenu extends Component {
           ) : (
             <DataDisplay />
           )}
+          <Chart
+            open={this.state.open}
+            close={this.state.close}
+            high={this.state.high}
+            low={this.state.low}
+          />
         </div>
       </div>
     );

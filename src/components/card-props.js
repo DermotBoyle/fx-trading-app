@@ -101,11 +101,11 @@ class TradeUpdate extends Component {
 TradeUpdate.propTypes = {
   urlFrom: PropTypes.string,
   urlTo: PropTypes.string,
-  open: PropTypes.array,
-  close: PropTypes.array,
-  high: PropTypes.array,
-  low: PropTypes.array,
-  timeStamp: PropTypes.array,
+  open: PropTypes.string,
+  close: PropTypes.string,
+  high: PropTypes.string,
+  low: PropTypes.string,
+  timeStamp: PropTypes.string,
   interval: PropTypes.string,
   isLoading: PropTypes.bool
 };

@@ -7,7 +7,7 @@ class DataDisplay extends Component {
   constructor() {
     super();
     this.state = {
-      data: "",
+      data: {},
       isLoading: false,
       from: null,
       to: null,
@@ -39,8 +39,6 @@ class DataDisplay extends Component {
     const metaKey = "4. Last Refreshed";
     const from = "2. From Symbol";
     const to = "3. To Symbol";
-    const urlFrom = this.state.urlFrom;
-    const urlTo = this.state.urlTo;
 
     const API_KEY = process.env.API_KEY;
 
@@ -48,26 +46,14 @@ class DataDisplay extends Component {
       `query?function=FX_INTRADAY&from_symbol=EUR&to_symbol=USD&interval=5min&apikey=${API_KEY}`
     );
     this.setState({
-      data: [...this.state.data],
-      timeStamp: [...this.state.data, tradeData.data[metaData][metaKey]],
-      open: [
-        ...this.state.data,
-        tradeData.data[firstValue][timeStamp]["1. open"]
-      ],
-      close: [
-        ...this.state.data,
-        tradeData.data[firstValue][timeStamp]["4. close"]
-      ],
-      low: [
-        ...this.state.data,
-        tradeData.data[firstValue][timeStamp]["3. low"]
-      ],
-      high: [
-        ...this.state.data,
-        tradeData.data[firstValue][timeStamp]["2. high"]
-      ],
-      from: [...this.state.data, tradeData.data[metaData][from]],
-      to: [...this.state.data, tradeData.data[metaData][to]]
+      timeStamp: tradeData.data[metaData][metaKey],
+      open: tradeData.data[firstValue][timeStamp]["1. open"],
+
+      close: tradeData.data[firstValue][timeStamp]["4. close"],
+      low: tradeData.data[firstValue][timeStamp]["3. low"],
+      high: tradeData.data[firstValue][timeStamp]["2. high"],
+      from: tradeData.data[metaData][from],
+      to: tradeData.data[metaData][to]
     });
   }
 
@@ -81,8 +67,7 @@ class DataDisplay extends Component {
       low,
       timeStamp,
       interval,
-      isLoading,
-      data
+      isLoading
     } = this.state;
 
     return (
