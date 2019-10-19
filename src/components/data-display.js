@@ -45,6 +45,29 @@ class DataDisplay extends Component {
     let tradeData = await API.get(
       `query?function=FX_INTRADAY&from_symbol=EUR&to_symbol=USD&interval=5min&apikey=${API_KEY}`
     );
+
+    let x = Object.entries(tradeData.data[firstValue])
+      .slice(0, 10)
+      .map(item => item[1]);
+    console.log(x);
+    let openArr = [];
+    let closeArr = [];
+    let lowArr = [];
+    let highArr = [];
+    for (let item in x) {
+      openArr.push(x[item]["1. open"]);
+      closeArr.push(x[item]["4. close"]);
+      lowArr.push(x[item]["3. low"]);
+      highArr.push(x[item]["2. high"]);
+    }
+
+    this.setState({
+      open: openArr,
+      close: closeArr,
+      high: highArr,
+      low: lowArr
+    });
+    /*
     this.setState({
       timeStamp: tradeData.data[metaData][metaKey],
       open: tradeData.data[firstValue][timeStamp]["1. open"],
@@ -54,7 +77,7 @@ class DataDisplay extends Component {
       high: tradeData.data[firstValue][timeStamp]["2. high"],
       from: tradeData.data[metaData][from],
       to: tradeData.data[metaData][to]
-    });
+    });*/
   }
 
   render() {

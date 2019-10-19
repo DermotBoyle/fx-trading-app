@@ -19,7 +19,7 @@ function Chart(props) {
         <VictoryCandlestick
           candleColors={{ positive: "#5f5c5b", negative: "#c43a31" }}
           data={[props]}
-          width="55"
+          width="15"
         />
       </VictoryChart>
     </div>

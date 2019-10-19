@@ -70,13 +70,15 @@ class MainMenu extends Component {
     API.get(
       `query?function=FX_INTRADAY&from_symbol=${from}&to_symbol=${to}&interval=5min&apikey=${API_KEY}`
     ).then(res => {
-      this.setState({
+      //const newArr = res.data[firstValue].slice(0, 5);
+      console.log(res.data[firstValue]);
+      /*this.setState({
         timeStamp: res.data[metaData][metaKey],
         open: res.data[firstValue][timeStamp]["1. open"],
         close: res.data[firstValue][timeStamp]["4. close"],
         low: res.data[firstValue][timeStamp]["3. low"],
         high: res.data[firstValue][timeStamp]["2. high"]
-      });
+      }); */
     });
   };
 
