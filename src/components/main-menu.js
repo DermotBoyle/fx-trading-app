@@ -53,7 +53,7 @@ class MainMenu extends Component {
     const from = this.state.urlFrom;
     const to = this.state.urlTo;
     const API_KEY = process.env.API_KEY;
-    var coeff = 1000 * 60 * 5;
+    /* var coeff = 1000 * 60 * 5;
     var date = new Date();
     var year = new Date(Math.round(date.getTime() / coeff) * coeff)
       .toISOString()
@@ -62,7 +62,7 @@ class MainMenu extends Component {
     var day = new Date(Math.floor(date.getTime() / coeff) * coeff)
       .toUTCString()
       .split(" ")[4];
-    const timeStamp = `${year} ${day}`;
+    const timeStamp = `${year} ${day}`; */
     const firstValue = "Time Series FX (5min)";
     const metaData = "Meta Data";
     const metaKey = "4. Last Refreshed";

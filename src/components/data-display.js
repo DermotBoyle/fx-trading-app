@@ -24,22 +24,8 @@ class DataDisplay extends Component {
   }
 
   async componentDidMount() {
-    var coeff = 1000 * 60 * 5;
-    var date = new Date();
-    var year = new Date(Math.round(date.getTime() / coeff) * coeff)
-      .toISOString()
-      .split("T")[0];
-
-    var day = new Date(Math.floor(date.getTime() / coeff) * coeff)
-      .toUTCString()
-      .split(" ")[4];
-    const timeStamp = `${year} ${day}`;
     const firstValue = "Time Series FX (5min)";
     const metaData = "Meta Data";
-    const metaKey = "4. Last Refreshed";
-    const from = "2. From Symbol";
-    const to = "3. To Symbol";
-
     const API_KEY = process.env.API_KEY;
 
     let tradeData = await API.get(
@@ -78,17 +64,6 @@ class DataDisplay extends Component {
       from: fromData,
       to: toData
     });
-    /*
-    this.setState({
-      timeStamp: tradeData.data[metaData][metaKey],
-      open: tradeData.data[firstValue][timeStamp]["1. open"],
-
-      close: tradeData.data[firstValue][timeStamp]["4. close"],
-      low: tradeData.data[firstValue][timeStamp]["3. low"],
-      high: tradeData.data[firstValue][timeStamp]["2. high"],
-      from: tradeData.data[metaData][from],
-      to: tradeData.data[metaData][to]
-    });*/
   }
 
   render() {
