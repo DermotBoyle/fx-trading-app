@@ -7,6 +7,7 @@ import {
 } from "victory";
 
 function Chart(props) {
+  console.log(props);
   return (
     <div className="victory">
       <VictoryChart
@@ -18,7 +19,6 @@ function Chart(props) {
         <VictoryAxis dependentAxis />
         <VictoryCandlestick
           candleColors={{ positive: "#5f5c5b", negative: "#c43a31" }}
-          data={[props]}
           width="15"
         />
       </VictoryChart>

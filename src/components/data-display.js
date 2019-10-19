@@ -34,7 +34,6 @@ class DataDisplay extends Component {
     let y = Object.entries(tradeData.data[metaData])
       .slice(0, 10)
       .map(item => item);
-    console.log(y);
     let toData = y[2];
     toData = toData[1];
     let fromData = y[1];

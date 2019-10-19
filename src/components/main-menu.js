@@ -53,32 +53,51 @@ class MainMenu extends Component {
     const from = this.state.urlFrom;
     const to = this.state.urlTo;
     const API_KEY = process.env.API_KEY;
-    /* var coeff = 1000 * 60 * 5;
-    var date = new Date();
-    var year = new Date(Math.round(date.getTime() / coeff) * coeff)
-      .toISOString()
-      .split("T")[0];
 
-    var day = new Date(Math.floor(date.getTime() / coeff) * coeff)
-      .toUTCString()
-      .split(" ")[4];
-    const timeStamp = `${year} ${day}`; */
     const firstValue = "Time Series FX (5min)";
     const metaData = "Meta Data";
     const metaKey = "4. Last Refreshed";
+    const metaOpen = "1. open";
+    const metaHigh = "2. high";
+    const metaLow = "3. low";
+    const metaClose = "4. close";
 
     API.get(
       `query?function=FX_INTRADAY&from_symbol=${from}&to_symbol=${to}&interval=5min&apikey=${API_KEY}`
     ).then(res => {
       //const newArr = res.data[firstValue].slice(0, 5);
-      console.log(res.data[firstValue]);
-      /*this.setState({
-        timeStamp: res.data[metaData][metaKey],
-        open: res.data[firstValue][timeStamp]["1. open"],
-        close: res.data[firstValue][timeStamp]["4. close"],
-        low: res.data[firstValue][timeStamp]["3. low"],
-        high: res.data[firstValue][timeStamp]["2. high"]
-      }); */
+      let x = res.data[firstValue];
+      const timeData = Object.entries(x)
+        .slice(5, 25)
+        .map(item => item[0]);
+
+      const openData = Object.entries(x)
+        .slice(5, 25)
+        .map(item => item[1][metaOpen]);
+
+      const highData = Object.entries(x)
+        .slice(5, 25)
+        .map(item => item[1][metaHigh]);
+
+      const lowData = Object.entries(x)
+        .slice(5, 25)
+        .map(item => item[1][metaLow]);
+
+      const closeData = Object.entries(x)
+        .slice(5, 25)
+        .map(item => item[1][metaClose]);
+
+      this.setState(
+        {
+          timeStamp: timeData,
+          open: openData,
+          high: highData,
+          low: lowData,
+          close: closeData,
+          data: [{ openData }, { highData }, { lowData }, { closeData }]
+        },
+        () => console.log(this.state.data)
+      );
     });
   };
 

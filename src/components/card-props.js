@@ -60,27 +60,27 @@ class TradeUpdate extends Component {
             <li>
               <FontAwesomeIcon icon={faDoorOpen} />
               &nbsp;
-              {open}
+              {open[0]}
             </li>
             <li>
               <FontAwesomeIcon icon={faDoorClosed} />
               &nbsp;
-              {close}
+              {close[0]}
             </li>
             <li>
               <FontAwesomeIcon icon={faAngleDoubleUp} />
               &nbsp;
-              {high}
+              {high[0]}
             </li>
             <li>
               <FontAwesomeIcon icon={faAngleDoubleDown} />
               &nbsp;
-              {low}
+              {low[0]}
             </li>
             <li>
               <FontAwesomeIcon icon={faClock} />
               &nbsp;
-              {timeStamp}
+              {timeStamp[0]}
             </li>
           </ul>
         </CardBody>
